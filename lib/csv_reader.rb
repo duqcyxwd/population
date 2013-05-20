@@ -1,12 +1,36 @@
 class CSVReader
 
-	attr_accessor :fname
+  attr_accessor :fname, :headers
 
-	def initialize(filename)
-		@fname = filename
-	end
+  def initialize(filename)
+    @fname = filename
+  end
 
-	def headers=(header_str)
-		@headers = header_str.split(',')
-	end
+  def headers=(header_str)
+    @headers = header_str.split(',')
+
+    @headers.map! do |h|
+      # remove quotes
+      new_header = h.gsub('"', '')
+
+      # remove new line
+      new_header.strip!
+
+      # convert to a symbol
+      new_header.underscore.to_sym
+    end
+  end
 end
+
+class String
+  def underscore
+    self.gsub(/::/, '/').
+    gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+    gsub(/([a-z\d])([A-Z])/,'\1_\2').
+    tr("-", "_").
+    downcase
+  end
+end
+
+# puts "\"RecordNumber\",\"Zipcode\",\"ZipCodeType\",\"City\",\"State\",\"LocationType\",\"Lat\",\"Long\",\"Xaxis\",\"Yaxis\",\"Zaxis\",\"WorldRegion\",\"Country\",\"LocationText\",\"Location\",\"Decommisioned\",\"TaxReturnsFiled\",\"EstimatedPopulation\",\"TotalWages\",\"Notes\"".split(',').map!{|h| h.gsub('"', '')}
+p "RecordNumber".underscore
