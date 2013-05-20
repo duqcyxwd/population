@@ -5,4 +5,8 @@ class Area
 		@city = hash[:city] || "n/a"
 		@state = hash[:state] || "n/a"
 	end
+
+	def to_s
+		"#{city}, #{state} #{zipcode} has #{estimated_population} people."
+	end
 end
