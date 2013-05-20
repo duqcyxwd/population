@@ -1,4 +1,6 @@
-##This is a program to find how many zip codes exist in the United States
+#Population 
+
+This is a program to find how many zip codes exist in the United States
 
 1. population.rb will be the file you execute on the command line. It will create a menu system and interpret a user's input;
 csv_reader.rb will read the CSV file;
