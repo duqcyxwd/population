@@ -21,10 +21,11 @@ class Analytics
 		if opt.nil?
 			puts "Invalid choice"
 		elsif opt[:method] != :exit
-			self.send opt[:method]
+			self.send opt[:method] # send to where?????
 			:done
 		else
-			opt[:method] #?????????????????????????
+			# opt[:method] #?????????????????????????
+			:exit
 		end
 	end
 
@@ -44,7 +45,8 @@ class Analytics
 		sorted = @areas.sort do |x, y|
 			x.estimated_population <=> y.estimated_population
 		end
-		largest = sorted.reverse.drop_while { |i| i.estimated_population == 0 }.first
+		# largest = sorted.reverse.drop_while { |i| i.estimated_population == 0 }.first
+		largest = sorted.reverse.first
 
 		puts "#{largest.city}, #{largest.state} has the largest population of #{largest.estimated_population}"
 	end

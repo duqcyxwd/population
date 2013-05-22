@@ -11,7 +11,7 @@ class Population
 	end
 
 	def menu
-		system 'clear'
+		system 'clear'   # clear dones;t
 		puts "Pupulation Menu"
 		puts "---------------"
 		@analytics.options.each do |opt|
